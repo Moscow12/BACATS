@@ -15,11 +15,10 @@
 			
 			$this->db->select('*');
 			$this->db->from('student');
-			$this->db->inner join('student', on 'program.id = student.program_id' on 'course.id = student.course_id');
 			$query = $this->db->get('student');
 			return $query->result_array();
 		}
-
+ 
 		//add students to database
 		// public function register_student(){
 
