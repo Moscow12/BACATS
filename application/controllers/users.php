@@ -29,11 +29,11 @@
 				'password' => $enc_password,
 				'role_id' => 'role_id'			
 			);
-
+			var_dump($data);
 			//insert user
 
 				$this->user_model->register($data);
-				var_dump($data);
+			
 				//set messege
 				$this->session->set_flashdata('user_register', 'You are now registered and can login');
 
@@ -52,7 +52,7 @@
 	 		
 			
 			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header1');
+				$this->load->view('templates/header');
 				$this->load->view('users/login', $data);
 				$this->load->view('templates/footer');
 			} else{
@@ -83,7 +83,7 @@
 						//set messege
 						$this->session->set_flashdata('login_failed', 'Invalid user login');
 
-						redirect('index.php/users/failed');
+						redirect('index.php/users/register');
 				}
 
 			
@@ -91,12 +91,13 @@
 			}	 	
 	 	}
 
-	 	public function failed(){
-	 			$data['title'] = 'Sign in';
-	 			$this->load->view('templates/header');
-				$this->load->view('users/login', $data);
-				$this->load->view('templates/footer');	
-	 	}
+	 	// public function failed(){
+		// 		 $data['title'] = 'Sign in';
+				 
+	 	// 		$this->load->view('templates/header');
+		// 		$this->load->view('users/login', $data);
+		// 		$this->load->view('templates/footer');	
+	 	// }
 	 	//logout function
 	 	public function logout(){
 	 		//Unset user data
