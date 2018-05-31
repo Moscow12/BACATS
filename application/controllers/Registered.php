@@ -78,7 +78,7 @@
 	 			$this->form_validation->set_rules('name', 'Name', 'required');
 	 			$this->form_validation->set_rules('reg_no', 'User Name', 'required');
 	 		#$this->form_validation->set_rules('email', 'Email', 'required');
-	 			$this->form_validation->set_rules('password', 'Password', 'required');
+	 			// $this->form_validation->set_rules('password', 'Password', 'required');
 	 		
 			
 			if($this->form_validation->run() ===FALSE){
@@ -153,7 +153,7 @@
 	 		  $this->load->library('form_validation');
 
 	 		
-	 		$this->form_validation->set_rules('username', 'User Name', 'required');
+	 		$this->form_validation->set_rules('reg_no', 'User Name', 'required');
 	 		$this->form_validation->set_rules('password', 'Password', 'required');
 	 		
 			
@@ -164,19 +164,19 @@
 			} else{
 
 
-					//Get username
-				$username = $this->input->post('username');
+					//Get reg_no
+				$reg_no = $this->input->post('reg_no');
 				//Get and encript the password
 				$password = md5($this->input->post('password'));
 
 				//login user
-				$user_id = $this->user_model->login($username, $password);
+				$user_id = $this->user_model->login($reg_no, $password);
 
 				if($user_id){
 					//create session
 					$user_data = array(
 						 'user_id' => $user_id,
-						 'username' => $username,
+						 'reg_no' => $reg_no,
 						 'logged_in' => true
 					);
 
