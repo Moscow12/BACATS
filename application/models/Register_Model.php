@@ -5,48 +5,51 @@
 			$this->load->database();
 		}
 
-		public function get_regestered(){
+		public function get_regestered(){ 
 			
 			$this->db->order_by('id');
-			$query = $this->db->get('registered');
+			$query = $this->db->get('users');
 			return $query->result_array();
 		}
 		public function get_details(){
-
-			$query = $this->db->get('registered');
+			
+			$this->db->select('*');
+			$this->db->from('student');
+			$this->db->inner join('student', on 'program.id = student.program_id' on 'course.id = student.course_id');
+			$query = $this->db->get('student');
 			return $query->result_array();
 		}
 
 		//add students to database
-		public function register_student(){
+		// public function register_student(){
 
-			  $data = array(
-			  	'name' => $this->input->post('name'),
-    			'reg_no' => $this->input->post('reg_no'),
-    			'password' => $this->input->post('password')    		
-    		);
+		// 	  $data = array(
+		// 	  	'name' => $this->input->post('name'),
+    	// 		'reg_no' => $this->input->post('reg_no'),
+    	// 		'password' => $this->input->post('password')    		
+    	// 	);
 
-   			 #$this->db->set($data);
-  			 #$this->db->insert($this->db->dbprefix . 'ST_ITM');
+   		// 	 #$this->db->set($data);
+  		// 	 #$this->db->insert($this->db->dbprefix . 'ST_ITM');
 
-			$this->db->insert('registered', $data);
-		}
+		// 	$this->db->insert('registered', $data);
+		// }
 
-		public function register_teacher(){
+		// public function register_teacher(){
 
-			  $data = array(
-			  	'name' => $this->input->post('name'),
-    			'reg_no' => $this->input->post('reg_no'),
-    			'password' => $this->input->post('password')    		
-    		);
-			  #var_dump($data);
+		// 	  $data = array(
+		// 	  	'name' => $this->input->post('name'),
+    	// 		'reg_no' => $this->input->post('reg_no'),
+    	// 		'password' => $this->input->post('password')    		
+    	// 	);
+		// 	  #var_dump($data);
 
-   			 #$this->db->set($data);
-  			 #$this->db->insert($this->db->dbprefix . 'ST_ITM');
+   		// 	 #$this->db->set($data);
+  		// 	 #$this->db->insert($this->db->dbprefix . 'ST_ITM');
 
-			$this->db->insert('teachers', $data);
+		// 	$this->db->insert('teachers', $data);
 			
-		}
+		// }
 
 		//function for collage in model
  		public function get_collage(){
@@ -67,7 +70,7 @@
 
  		public function get_dept(){
 			$this->db->order_by('dept_name');
-			$query = $this->db->get('depertment');
+			$query = $this->db->get('department');
 			return $query->result_array();
 		}
 
@@ -76,7 +79,7 @@
  				'collage_id' => $this->input->post('collage_id'),
  				'dept_name' => $this->input->post('dept_name')
  				);
- 			return $this->db->insert('depertment', $data);
+ 			return $this->db->insert('department', $data);
  		}
  		//function for program in model
 
@@ -98,7 +101,7 @@
 
  		public function get_course(){
 			$this->db->order_by('course_code');
-			$query = $this->db->get('courses');
+			$query = $this->db->get('course');
 			return $query->result_array();
 		}
 
@@ -108,6 +111,6 @@
  				'course_name' => $this->input->post('course_name'),
  				'dept_id' => $this->input->post('dept_id')
  				);
- 			return $this->db->insert('courses', $data);
+ 			return $this->db->insert('course', $data);
  		}
 	}
