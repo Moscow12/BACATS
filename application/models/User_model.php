@@ -4,15 +4,17 @@
 		public function register($data){
 			//User data array
 			
+			$query = $this->db->get('role');
+			return $query->result_array();
 			return $this->db->insert('users', $data);
 			
 		}
 
 		//login user
-		public function login($username, $password){
+		public function login($reg_no, $password){
 
 			//validate
-			$this->db->where('username', $username);
+			$this->db->where('reg_no', $reg_no);
 			$this->db->where('password', $password);
 
 			$return = $this->db->get('users');
@@ -25,11 +27,11 @@
 			}
 		}
 
-		//check the username exist
-		public function check_username_exists($username){
+		//check the reg_no exist
+		public function check_reg_no_exists($reg_no){
 
 
-			$query = $this->db->get_where('users', array('username'=> $username));
+			$query = $this->db->get_where('users', array('reg_no'=> $reg_no));
 
 			if(empty($query->row_array())){
 				
