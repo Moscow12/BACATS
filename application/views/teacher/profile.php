@@ -46,4 +46,4 @@
 			</div>
 		<div class="col-md-2"></div>
 	</div>				
-<?php echo form_close(); ?>
+	<?php echo form_close(); ?>
