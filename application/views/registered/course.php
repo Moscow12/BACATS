@@ -11,10 +11,14 @@
             <div class="card mb-3">
             <div class="card-header small text-muted"><h3><?php echo $title; ?></h3></div>
            
-                 <div class="form-group">
-                    <label>Depertment Id</label>
-                    <input type="number" class="form-control" name="dept_id" placeholder="Depertment id" required outofocus>
-                </div>
+            <div class="form-group">
+            <label>Department name</label>
+                <select name="dept_id" class="form-control">
+                    <?php foreach ($departments as $department){ ?>
+                        <option value="<?php echo $department['id']; ?>"><?php echo $department['dept_name']; ?> </option>
+                    <?php }  ?>
+                </select>
+            </div>
                 <div class="form-group">
                     <label>Course Code</label>
                     <input type="text" class="form-control" name="course_code" placeholder="Course name" required outofocus>
@@ -32,17 +36,21 @@
 <div class="mb-0 mt-4">    
   <div class="card-columns">
       <div class="card mb-3">
-          <div class="card-header small text-muted"> 
-              <h2><?php echo $title; ?></h2>
-          </div>
-           
-          <ul class="list-group">
-              <?php foreach ($courses as $course){ ?>
-              <li class="list-group-item"><?php echo $course['course_code']; ?>
-                 
-              </li>
-              <?php } ?>
-          </ul> 
-      </div>
+            <div class="card-header small text-muted"> 
+                <h2><?php echo $title; ?></h2>
+            </div>
+            <table>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course name</th>
+                </tr>
+                <tr>
+                    <?php foreach ($courses as $course){ ?>
+                        <td><?php echo $course['course_code']; ?></td>
+                        <td><?php echo $course['course_name']; ?></td>
+                    <?php } ?>
+                </tr>
+            </table>
+        </div>
     </div>
   </div>
