@@ -11,7 +11,7 @@
 			$data['registers'] = $this->register_model->get_regestered();
 			
 			$this->load->view('templates/header1');
-			$this->load->view('registered/homep', $data);
+			$this->load->view('admin/homep', $data);
 			$this->load->view('templates/footer');
 		}
 
@@ -21,7 +21,7 @@
 			$data['details'] = $this->register_model->get_details();
 
 			$this->load->view('templates/header1');
-			$this->load->view('registered/view', $data);
+			$this->load->view('admin/view', $data);
 			$this->load->view('templates/footer');
 		}
 
@@ -41,7 +41,7 @@
 			
 			if($this->form_validation->run() ===FALSE){
 				$this->load->view('templates/header1');
-				$this->load->view('registered/addstudent', $data);
+				$this->load->view('admin/addstudent', $data);
 				$this->load->view('templates/footer');
 			} else{
 
@@ -60,7 +60,7 @@
 
 				
 				$this->load->view('templates/header1');
-				$this->load->view('registered/view', $data);
+				$this->load->view('admin/view', $data);
 				$this->load->view('templates/footer');
 		}
 	}
@@ -75,7 +75,7 @@
 			
 			if($this->form_validation->run() ===FALSE){
 				$this->load->view('templates/header1');
-				$this->load->view('registered/addteachers', $data);
+				$this->load->view('admin/addteachers', $data);
 				$this->load->view('templates/footer');
 			} else{
 
@@ -93,7 +93,7 @@
 				$this->register_model->register_teacher($data);
 
 				$this->load->view('templates/header1');
-				$this->load->view('registered/view', $data);
+				$this->load->view('admin/view', $data);
 				$this->load->view('templates/footer');
 		}
 	}
@@ -104,7 +104,7 @@
 				$data['Collagies'] = $this->register_model->get_collage();
 			
 				$this->load->view('templates/header1');
-				$this->load->view('registered/Collagies', $data);
+				$this->load->view('admin/Collagies', $data);
 				$this->load->view('templates/footer');
 
 			}
@@ -124,7 +124,7 @@
 					//$this->category_model->create_category();
 					$data['Collagies'] = $this->register_model->get_collage();
 					$this->load->view('templates/header1');
-					$this->load->view('registered/Collage', $data);
+					$this->load->view('admin/Collage', $data);
 					$this->load->view('templates/footer');
 				}else{
 					$this->register_model->create_collage();
@@ -191,7 +191,7 @@
 				$data['depertments'] = $this->register_model->get_dept();
 
 				$this->load->view('templates/header1');
-				$this->load->view('registered/depertment', $data);
+				$this->load->view('admin/depertment', $data);
 				$this->load->view('templates/footer');
 
 			}
@@ -214,7 +214,7 @@
 					//$this->category_model->create_category();
 					$data['depertments'] = $this->register_model->get_dept();
 					$this->load->view('templates/header1');
-					$this->load->view('registered/depertment', $data);
+					$this->load->view('admin/depertment', $data);
 					$this->load->view('templates/footer');
 				}else{
 					$this->register_model->create_dept();
@@ -233,7 +233,7 @@
 				$data['programs'] = $this->register_model->get_program();
 
 				$this->load->view('templates/header1');
-				$this->load->view('registered/program', $data);
+				$this->load->view('admin/program', $data);
 				$this->load->view('templates/footer');
 
 			}
@@ -256,7 +256,7 @@
 					//$this->category_model->create_category();
 					$data['programs'] = $this->register_model->get_program();
 					$this->load->view('templates/header1');
-					$this->load->view('registered/program', $data);
+					$this->load->view('admin/program', $data);
 					$this->load->view('templates/footer');
 				}else{
 					$this->register_model->create_program();
@@ -273,7 +273,7 @@
 				$data['courses'] = $this->register_model->get_course();
 
 				$this->load->view('templates/header1');
-				$this->load->view('registered/courses', $data);
+				$this->load->view('admin/courses', $data);
 				$this->load->view('templates/footer');
 
 			}
@@ -297,7 +297,7 @@
 					//$this->category_model->create_category();
 					$data['courses'] = $this->register_model->get_course();
 					$this->load->view('templates/header1');
-					$this->load->view('registered/course', $data);
+					$this->load->view('admin/course', $data);
 					$this->load->view('templates/footer');
 				}else{
 					$this->register_model->create_course();
