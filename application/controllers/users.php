@@ -1,10 +1,10 @@
 <?php 
 	 class Users extends CI_Controller {
 	 	public function register(){
-			 $data['title'] = 'Sign Up';
+			$data['title'] = 'Sign Up';
 			 
-			$data['roles'] = $this->user_model->register('role_id');
-	 		  $this->load->library('form_validation');
+			$data['roles'] = $this->user_model->getRole();
+	 		$this->load->library('form_validation');
 
 			  $this->form_validation->set_rules('firstname', 'First Name', 'required');
 			  $this->form_validation->set_rules('mname', 'Middle Name', 'required');
@@ -20,16 +20,19 @@
 			} else{
 
 				#Encrept password
-				$enc_password = md5($this->input->post('BACATS@2018'));
+				// $enc_password = md5($this->input->post('BACATS@2018'));
 				$data = array(
 				'firstname' => $this->input->post('firstname'),
 				'mname' => $this->input->post('mname'),
 				'lastname' => $this->input->post('lastname'),
 				'reg_no' => $this->input->post('reg_no'),
-				'password' => $enc_password,
-				'role_id' => 'role_id'			
+				// 'password' => $enc_password,
+				'password'=> $this->input->post('BACATS@2018'),
+				'role_id' => $this->input->post('role_id')				
+				
+				// 'role_id' => 'role_id'
 			);
-			var_dump($data);
+			
 			//insert user
 
 				$this->user_model->register($data);
@@ -61,7 +64,7 @@
 					//Get reg_no
 				$reg_no = $this->input->post('reg_no');
 				//Get and encript the password
-				$password = md5($this->input->post('password'));
+				$password = $this->input->post('password');
 
 				//login user
 				$user_id = $this->user_model->login($reg_no, $password);
@@ -83,7 +86,7 @@
 						//set messege
 						$this->session->set_flashdata('login_failed', 'Invalid user login');
 
-						redirect('index.php/users/register');
+						redirect('index.php/registered/homep');
 				}
 
 			
