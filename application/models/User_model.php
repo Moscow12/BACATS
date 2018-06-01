@@ -2,12 +2,12 @@
 	class User_model extends CI_Model{
 
 		public function register($data){
-			//User data array
-			
+			return $this->db->insert('users', $data);
+		}
+
+		public function getRole() {
 			$query = $this->db->get('role');
 			return $query->result_array();
-			return $this->db->insert('users', $data);
-			
 		}
 
 		//login user
