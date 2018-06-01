@@ -58,11 +58,7 @@
 
 				$this->register_model->register_student($data);
 
-				//set messege
-				#$this->session->set_flashdata('user_register', 'You are now registered and can login');
-
-				#redirect('index.php/users/login');
-
+				
 				$this->load->view('templates/header1');
 				$this->load->view('registered/view', $data);
 				$this->load->view('templates/footer');
@@ -71,14 +67,10 @@
 	public function addteacher(){
 		$data['title'] = 'Add teacher to database';
 
-				#$data['addstudent'] = $this->register_model->register_student();
-
 				$this->load->library('form_validation');
 
 	 			$this->form_validation->set_rules('name', 'Name', 'required');
 	 			$this->form_validation->set_rules('reg_no', 'User Name', 'required');
-	 		#$this->form_validation->set_rules('email', 'Email', 'required');
-	 			// $this->form_validation->set_rules('password', 'Password', 'required');
 	 		
 			
 			if($this->form_validation->run() ===FALSE){
@@ -100,11 +92,6 @@
 
 				$this->register_model->register_teacher($data);
 
-				//set messege
-				#$this->session->set_flashdata('user_register', 'You are now registered and can login');
-
-				#redirect('index.php/users/login');
-
 				$this->load->view('templates/header1');
 				$this->load->view('registered/view', $data);
 				$this->load->view('templates/footer');
@@ -115,7 +102,7 @@
 				$data['title'] = 'Collagies registered';
 
 				$data['Collagies'] = $this->register_model->get_collage();
-
+			
 				$this->load->view('templates/header1');
 				$this->load->view('registered/Collagies', $data);
 				$this->load->view('templates/footer');
@@ -129,9 +116,9 @@
          		 } 
 
 				$data['title'] = 'Create collage';
-
+				$data['collages'] = $this->register_model->get_collage();
 				$this->load->library('form_validation');
-				$this->form_validation->set_rules('name', 'collage name', 'required');
+				$this->form_validation->set_rules('collage_name', 'collage name', 'required');
 
 				if($this->form_validation->run() ===FALSE){
 					//$this->category_model->create_category();
@@ -144,7 +131,7 @@
 
 					//set message
 					  $this->session->set_flashdata('collage_created', 'Your collage has been created');
-					redirect('index.php/registered/homep');
+					redirect('index.php/registered/collage');
 				}
 			}
 		//login
@@ -217,6 +204,7 @@
          		 } 
 
 				$data['title'] = 'Create deprtment';
+				$data['collages'] = $this->register_model->getcollage();
 
 				$this->load->library('form_validation');
 				$this->form_validation->set_rules('dept_name', 'Depertment Name', 'required');
@@ -233,7 +221,7 @@
 
 					//set message
 					  $this->session->set_flashdata('depertment_created', 'Your depertment has been created');
-					redirect('index.php/registered/homep');
+					redirect('index.php/registered/dept');
 				}
 			}
 
@@ -258,10 +246,11 @@
          		 } 
 
 				$data['title'] = 'Create Program';
+				$data['departments'] = $this->register_model->getdepartment();
 
 				$this->load->library('form_validation');
 				$this->form_validation->set_rules('program_name', 'Program Name', 'required');
-				$this->form_validation->set_rules('dept_id', 'Depertment id', 'required');
+				$this->form_validation->set_rules('dept_id', 'Depertment name', 'required');
 
 				if($this->form_validation->run() ===FALSE){
 					//$this->category_model->create_category();
@@ -274,7 +263,7 @@
 
 					//set message
 					  $this->session->set_flashdata('program_created', 'Your program has been created');
-					redirect('index.php/registered/homep');
+					redirect('index.php/registered/program');
 				}
 			}
 
@@ -297,10 +286,11 @@
          		 } 
 
 				$data['title'] = 'Create Course';
+				$data['departments'] = $this->register_model->getdepartments();
 
 				$this->load->library('form_validation');
 				$this->form_validation->set_rules('course_name', 'Course name', 'required');
-				$this->form_validation->set_rules('dept_id', 'Depertment id', 'required');
+				$this->form_validation->set_rules('dept_id', 'Depertment name', 'required');
 				$this->form_validation->set_rules('course_code', 'Course code', 'required');
 
 				if($this->form_validation->run() ===FALSE){
@@ -314,7 +304,7 @@
 
 					//set message
 					  $this->session->set_flashdata('course_created', 'Your Course has been created');
-					redirect('index.php/registered/homep');
+					redirect('index.php/registered/course');
 				}
 			}
 
