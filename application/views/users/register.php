@@ -34,15 +34,6 @@
 							<label>User name</label>
 							<input type="text" class="form-control" name="reg_no" placeholder="User name">
 						</div>
-						
-						<!-- <div class="form-group">
-							<label>Password</label>
-							<input type="text" class="form-control" name="password" placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label>Confirm Password</label>
-							<input type="password" class="form-control" name="password2" placeholder="confirm Password">
-						</div> -->
 						<div class="form-group">
 							<label>User Role</label>
 								<select name="role_id" class="form-control">
@@ -51,7 +42,8 @@
 									<?php }  ?>
 								</select>
 						</div>
-						<button class="btn btn-primary" type="submit">Submit</button> <p> if arleady registered	<a href="<?php echo base_url(); ?>index.php/users/login">login</a></p>
+						<button class="btn btn-primary" type="submit">Submit</button>
+						 <p> if arleady registered	<a href="<?php echo base_url(); ?>index.php/users/login">login</a></p>
 				</div>
 			</div>
 		<!-- </div> -->
