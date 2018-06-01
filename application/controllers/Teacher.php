@@ -16,7 +16,7 @@
 			$data['registers'] = $this->register_model->get_regestered();
 			
 			$this->load->view('templates/header2');
-			$this->load->view('registered/homep', $data);
+			 $this->load->view('admin/homep', $data); //>>it will be changed/removed
 			$this->load->view('templates/footer');
 		}
 
