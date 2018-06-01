@@ -11,10 +11,14 @@
             <div class="card mb-3">
             <div class="card-header small text-muted"><h3><?php echo $title; ?></h3></div>
            
-                 <div class="form-group">
-                    <label>Program Id</label>
-                    <input type="number" class="form-control" name="dept_id" placeholder="Depertment id" required outofocus>
-                </div>
+            <div class="form-group">
+            <label>Department name</label>
+                <select name="dept_id" class="form-control">
+                    <?php foreach ($departments as $department){ ?>
+                        <option value="<?php echo $department['id']; ?>"><?php echo $department['dept_name']; ?> </option>
+                    <?php }  ?>
+                </select>
+            </div>
                 <div class="form-group">
                     <label>Name of Program</label>
                     <input type="text" class="form-control" name="program_name" placeholder="Program name" required outofocus>
@@ -29,7 +33,7 @@
   <div class="card-columns">
       <div class="card mb-3">
           <div class="card-header small text-muted"> 
-              <h2><?php echo $title; ?></h2>
+              <h2>Program created</h2>
           </div>
            
           <ul class="list-group">
