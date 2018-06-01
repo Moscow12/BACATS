@@ -19,47 +19,17 @@
 			return $query->result_array();
 		}
  
-		//add students to database
-		// public function register_student(){
 
-		// 	  $data = array(
-		// 	  	'name' => $this->input->post('name'),
-    	// 		'reg_no' => $this->input->post('reg_no'),
-    	// 		'password' => $this->input->post('password')    		
-    	// 	);
-
-   		// 	 #$this->db->set($data);
-  		// 	 #$this->db->insert($this->db->dbprefix . 'ST_ITM');
-
-		// 	$this->db->insert('registered', $data);
-		// }
-
-		// public function register_teacher(){
-
-		// 	  $data = array(
-		// 	  	'name' => $this->input->post('name'),
-    	// 		'reg_no' => $this->input->post('reg_no'),
-    	// 		'password' => $this->input->post('password')    		
-    	// 	);
-		// 	  #var_dump($data);
-
-   		// 	 #$this->db->set($data);
-  		// 	 #$this->db->insert($this->db->dbprefix . 'ST_ITM');
-
-		// 	$this->db->insert('teachers', $data);
-			
-		// }
-
-		//function for collage in model
+		//function for collage in model		
  		public function get_collage(){
-			$this->db->order_by('name');
+			// $this->db->order_by('collage_name');
 			$query = $this->db->get('collage');
 			return $query->result_array();
 		}
 
 		public function create_collage(){
  			$data = array(
- 				'name' => $this->input->post('name')
+ 				'collage_name' => $this->input->post('collage_name')
  				);
  			return $this->db->insert('collage', $data);
  		}
@@ -73,18 +43,28 @@
 			return $query->result_array();
 		}
 
+		public function getcollage() {
+			$query = $this->db->get('collage');
+			return $query->result_array();
+		}
 		public function create_dept(){
  			$data = array(
  				'collage_id' => $this->input->post('collage_id'),
  				'dept_name' => $this->input->post('dept_name')
  				);
  			return $this->db->insert('department', $data);
- 		}
- 		//function for program in model
+		 }
+		 
 
+ 		//function for program in model
  		public function get_program(){
 			$this->db->order_by('program_name');
 			$query = $this->db->get('program');
+			return $query->result_array();
+		}
+
+		public function getdepartment() {
+			$query = $this->db->get('department');
 			return $query->result_array();
 		}
 
@@ -96,11 +76,16 @@
  			return $this->db->insert('program', $data);
  		}
 
- 		//function for program in model
+ 		//function for course in model
 
  		public function get_course(){
 			$this->db->order_by('course_code');
 			$query = $this->db->get('course');
+			return $query->result_array();
+		}
+
+		public function getdepartments() {
+			$query = $this->db->get('department');
 			return $query->result_array();
 		}
 
