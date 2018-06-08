@@ -5,14 +5,14 @@
 			parent::__construct();
 			$this->load->model('register_model');
 		}
-		public function homep(){
+		public function index(){
 			$data['title'] = 'Registered students';
 
 			$data['registers'] = $this->register_model->get_regestered();
 			
-			$this->load->view('templates/header1');
-			$this->load->view('admin/homep', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/header1');
+			$this->load->view('admin/index', $data);
+			$this->load->view('admin/footer');
 		}
 
 		public function details(){
@@ -20,100 +20,132 @@
 
 			$data['details'] = $this->register_model->get_details();
 
-			$this->load->view('templates/header1');
+			$this->load->view('admin/header1');
 			$this->load->view('admin/view', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/footer');
 		}
 
-		public function addstudent(){
-			
-				$data['title'] = 'Add student to database';
-
-				#$data['addstudent'] = $this->register_model->register_student();
-
-				$this->load->library('form_validation');
-
-	 			$this->form_validation->set_rules('name', 'Name', 'required');
-	 			$this->form_validation->set_rules('reg_no', 'User Name', 'required');
-	 		#$this->form_validation->set_rules('email', 'Email', 'required');
-	 			$this->form_validation->set_rules('password', 'Password', 'required');
-	 		
+		public function homep(){
+			$data['title'] = 'Add users';
+			 
+			$data['roles'] = $this->register_model->getRole();
+	 		$this->load->library('form_validation');
+			  $this->form_validation->set_rules('firstname', 'First Name', 'required');
+			  $this->form_validation->set_rules('mname', 'Middle Name', 'required');
+			  $this->form_validation->set_rules('lastname', 'Last Name', 'required');
+	 		  $this->form_validation->set_rules('reg_no', 'User Name', 'required|callback_check_reg_no_exists');
+	 		//   $this->form_validation->set_rules('password', 'Password', 'required');
+	 		//   $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 			
 			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header1');
-				$this->load->view('admin/addstudent', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/header1');
+				$this->load->view('admin/homep', $data);
+				$this->load->view('admin/footer');
 			} else{
-
 				#Encrept password
-				$enc_password = md5($this->input->post('password'));
+				// $enc_password = md5($this->input->post('BACATS@2018'));
 				$data = array(
-				'name' => $this->input->post('name'),
-				
+				'firstname' => $this->input->post('firstname'),
+				'mname' => $this->input->post('mname'),
+				'lastname' => $this->input->post('lastname'),
 				'reg_no' => $this->input->post('reg_no'),
-				'password' => $enc_password,
-				);
-
+				// 'password' => $this->input->post('password'),
+				'role_id' => $this->input->post('role_id')				
+			
+			);
+			
 			//insert user
-
-				$this->register_model->register_student($data);
-
-				
-				$this->load->view('templates/header1');
-				$this->load->view('admin/view', $data);
-				$this->load->view('templates/footer');
+				$this->user_model->register($data);
+			
+				//set messege
+				$this->session->set_flashdata('user_register', 'registered');
+				redirect('index.php/registered/homep');
+			}	 	
+		 }
+		 
+		 public function check_reg_no_exists($email){
+			$this->form_validation->set_message('check_reg_no_exists', 'That registration no. already registered.');
+			if($this->user_model->check_reg_no_exists($email)){
+				return true;
+			} else{
+				return false;
+			}
 		}
-	}
-	public function addteacher(){
-		$data['title'] = 'Add teacher to database';
 
-				$this->load->library('form_validation');
+		public function student(){
+			
+				$data['title'] = 'Registered as Students ';
 
-	 			$this->form_validation->set_rules('name', 'Name', 'required');
-	 			$this->form_validation->set_rules('reg_no', 'User Name', 'required');
+				$data['students'] = $this->register_model->get_student();
+
+				$data['programes'] = $this->register_model->get_students();
+				
+				$this->load->view('admin/header1');
+				$this->load->view('admin/student', $data);
+				$this->load->view('admin/footer');
+		}
+
+		public function teacher(){
+			
+				$data['title'] = 'Registered as Instructer ';
+
+				$data['teachers'] = $this->register_model->get_teachers();
+				
+				$this->load->view('admin/header1');
+				$this->load->view('admin/teacher', $data);
+				$this->load->view('admin/footer');
+		}
+	
+	// public function addteacher(){
+	// 	$data['title'] = 'Add teacher to database';
+
+	// 			$this->load->library('form_validation');
+
+	//  			$this->form_validation->set_rules('name', 'Name', 'required');
+	//  			$this->form_validation->set_rules('reg_no', 'User Name', 'required');
 	 		
 			
-			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header1');
-				$this->load->view('admin/addteachers', $data);
-				$this->load->view('templates/footer');
-			} else{
+	// 		if($this->form_validation->run() ===FALSE){
+	// 			$this->load->view('admin/header1');
+	// 			$this->load->view('admin/addteachers', $data);
+	// 			$this->load->view('admin/footer');
+	// 		} else{
 
-				#Encrept password
-				$enc_password = md5($this->input->post('password'));
-				$data = array(
-				'name' => $this->input->post('name'),
+	// 			#Encrept password
+	// 			$enc_password = md5($this->input->post('password'));
+	// 			$data = array(
+	// 			'name' => $this->input->post('name'),
 				
-				'reg_no' => $this->input->post('reg_no'),
-				'password' => $enc_password,
-				);
+	// 			'reg_no' => $this->input->post('reg_no'),
+	// 			'password' => $enc_password,
+	// 			);
 
-			//insert user
+	// 		//insert user
 
-				$this->register_model->register_teacher($data);
+	// 			$this->register_model->register_teacher($data);
 
-				$this->load->view('templates/header1');
-				$this->load->view('admin/view', $data);
-				$this->load->view('templates/footer');
-		}
-	}
+	// 			$this->load->view('admin/header1');
+	// 			$this->load->view('admin/view', $data);
+	// 			$this->load->view('admin/footer');
+	// 	}
+	// }
 
 	public function Collagies(){
 				$data['title'] = 'Collagies registered';
 
 				$data['Collagies'] = $this->register_model->get_collage();
 			
-				$this->load->view('templates/header1');
+				$this->load->view('admin/header1');
 				$this->load->view('admin/Collagies', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/footer');
 
 			}
 
 	public function collage(){
 		 //check login
-          		if(!$this->session->userdata('logged_in')){
-          		  redirect('index.php/registered/collage');
-         		 } 
+          		// if(!$this->session->userdata('logged_in')){
+          		//   redirect('index.php/registered/collage');
+         		//  } 
 
 				$data['title'] = 'Create collage';
 				$data['collages'] = $this->register_model->get_collage();
@@ -123,15 +155,15 @@
 				if($this->form_validation->run() ===FALSE){
 					//$this->category_model->create_category();
 					$data['Collagies'] = $this->register_model->get_collage();
-					$this->load->view('templates/header1');
+					$this->load->view('admin/header1');
 					$this->load->view('admin/Collage', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/footer');
 				}else{
 					$this->register_model->create_collage();
 
 					//set message
-					  $this->session->set_flashdata('collage_created', 'Your collage has been created');
-					redirect('index.php/registered/collage');
+					//   $this->session->set_flashdata('collage_created', 'Your collage has been created');
+					// redirect('index.php/registered/collage');
 				}
 			}
 		//login
@@ -145,9 +177,9 @@
 	 		
 			
 			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header');
+				#$this->load->view('users/login' $data);
 				$this->load->view('users/login', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/footer');
 			} else{
 
 
@@ -177,31 +209,28 @@
 						$this->session->set_flashdata('login_failed', 'Invalid user login');
 
 						redirect('index.php/users/failed');
-				}
-
-			
-			
+				}		
 			}	 	
 	 	}
 //create controller for adding deprtment 
 
 	 	public function depertment(){
-				$data['title'] = 'depertment registered';
+				$data['title'] = 'Depertment registered';
 
 				$data['depertments'] = $this->register_model->get_dept();
 
-				$this->load->view('templates/header1');
-				$this->load->view('admin/depertment', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/header1');
+				$this->load->view('admin/vdepertment', $data);
+				$this->load->view('admin/footer');
 
 			}
 
 
 	 	public function dept(){
 		 //check login
-          		if(!$this->session->userdata('logged_in')){
-          		  redirect('index.php/registered/collage');
-         		 } 
+          		// if(!$this->session->userdata('logged_in')){
+          		//   redirect('index.php/registered/collage');
+         		//  } 
 
 				$data['title'] = 'Create deprtment';
 				$data['collages'] = $this->register_model->getcollage();
@@ -213,15 +242,15 @@
 				if($this->form_validation->run() ===FALSE){
 					//$this->category_model->create_category();
 					$data['depertments'] = $this->register_model->get_dept();
-					$this->load->view('templates/header1');
+					$this->load->view('admin/header1');
 					$this->load->view('admin/depertment', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/footer');
 				}else{
 					$this->register_model->create_dept();
 
 					//set message
 					  $this->session->set_flashdata('depertment_created', 'Your depertment has been created');
-					redirect('index.php/registered/dept');
+					redirect('index.php/registered/vdepertment');
 				}
 			}
 
@@ -232,18 +261,18 @@
 
 				$data['programs'] = $this->register_model->get_program();
 
-				$this->load->view('templates/header1');
-				$this->load->view('admin/program', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/header1');
+				$this->load->view('admin/vprogram', $data);
+				$this->load->view('admin/footer');
 
 			}
 
 
 	 	public function program(){
 		 //check login
-          		if(!$this->session->userdata('logged_in')){
-          		  redirect('index.php/registered/program');
-         		 } 
+          		// if(!$this->session->userdata('logged_in')){
+          		//   redirect('index.php/registered/program');
+         		//  } 
 
 				$data['title'] = 'Create Program';
 				$data['departments'] = $this->register_model->getdepartment();
@@ -255,15 +284,15 @@
 				if($this->form_validation->run() ===FALSE){
 					//$this->category_model->create_category();
 					$data['programs'] = $this->register_model->get_program();
-					$this->load->view('templates/header1');
+					$this->load->view('admin/header1');
 					$this->load->view('admin/program', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/footer');
 				}else{
 					$this->register_model->create_program();
 
-					//set message
-					  $this->session->set_flashdata('program_created', 'Your program has been created');
-					redirect('index.php/registered/program');
+					// //set message
+					//   $this->session->set_flashdata('program_created', 'Your program has been created');
+					// redirect('index.php/registered/program');
 				}
 			}
 
@@ -272,19 +301,15 @@
 
 				$data['courses'] = $this->register_model->get_course();
 
-				$this->load->view('templates/header1');
-				$this->load->view('admin/courses', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/header1');
+				$this->load->view('admin/vcourse', $data);
+				$this->load->view('admin/footer');
 
 			}
 
 
 	 	public function course(){
-		 //check login
-          		if(!$this->session->userdata('logged_in')){
-          		  redirect('index.php/registered/course');
-         		 } 
-
+		 
 				$data['title'] = 'Create Course';
 				$data['departments'] = $this->register_model->getdepartments();
 
@@ -296,18 +321,28 @@
 				if($this->form_validation->run() ===FALSE){
 					//$this->category_model->create_category();
 					$data['courses'] = $this->register_model->get_course();
-					$this->load->view('templates/header1');
+					$this->load->view('admin/header1');
 					$this->load->view('admin/course', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/footer');
 				}else{
 					$this->register_model->create_course();
 
 					//set message
-					  $this->session->set_flashdata('course_created', 'Your Course has been created');
-					redirect('index.php/registered/course');
+					//   $this->session->set_flashdata('course_created', 'Your Course has been created');
+					// redirect('index.php/registered/course');
 				}
 			}
 
+			//function to call attendances
+		public function attendance(){
+			$data['title'] = 'Students Attendences'; 
+
+			$data['attend'] = $this->register_model->get_attendance();
+
+			$this->load->view('admin/header1');
+			$this->load->view('admin/attendance', $data);
+			$this->load->view('admin/footer');
+		}
 
 	
 }
