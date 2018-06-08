@@ -1,53 +1,21 @@
 <?php 
 	 class Users extends CI_Controller {
-	 	public function register(){
-			$data['title'] = 'Sign Up';
-			 
-			$data['roles'] = $this->user_model->getRole();
-	 		$this->load->library('form_validation');
 
-			  $this->form_validation->set_rules('firstname', 'First Name', 'required');
-			  $this->form_validation->set_rules('mname', 'Middle Name', 'required');
-			  $this->form_validation->set_rules('lastname', 'Last Name', 'required');
-	 		  $this->form_validation->set_rules('reg_no', 'User Name', 'required|callback_check_reg_no_exists');
-	 		//   $this->form_validation->set_rules('password', 'Password', 'required');
-	 		//   $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
-			
-			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header');
-				$this->load->view('users/register', $data);
-				$this->load->view('templates/footer');
-			} else{
+		public function construct(){
+			parent::__construct();
+			$this->load->model("user_model");//Load model in my controller
+		}
 
-				#Encrept password
-				// $enc_password = md5($this->input->post('BACATS@2018'));
-				$data = array(
-				'firstname' => $this->input->post('firstname'),
-				'mname' => $this->input->post('mname'),
-				'lastname' => $this->input->post('lastname'),
-				'reg_no' => $this->input->post('reg_no'),
-				// 'password' => $enc_password,
-				'password'=> $this->input->post('BACATS@2018'),
-				'role_id' => $this->input->post('role_id')				
-				
-				// 'role_id' => 'role_id'
-			);
-			
-			//insert user
+		public function index(){
+			$data['title'] = 'Sign in';
+			$this->load->view('users/login',$data);
+			$this->load->view('templates/footer');
 
-				$this->user_model->register($data);
-			
-				//set messege
-				$this->session->set_flashdata('user_register', 'You are now registered and can login');
+		}
 
-				redirect('index.php/users/login');
-			}	 	
-	 	}
-
-	 	//login
 	 	public function login(){
 	 		$data['title'] = 'Sign in';
-	 		  $this->load->library('form_validation');
+	 		$this->load->library('form_validation');
 
 	 		
 	 		$this->form_validation->set_rules('reg_no', 'User Name', 'required');
@@ -55,8 +23,7 @@
 	 		
 			
 			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header');
-				$this->load->view('users/login', $data);
+				$this->load->view('users/login',$data);
 				$this->load->view('templates/footer');
 			} else{
 
@@ -66,70 +33,66 @@
 				//Get and encript the password
 				$password = $this->input->post('password');
 
-				//login user
-				$user_id = $this->user_model->login($reg_no, $password);
+					//Query to check info from db
+				$chekikamayupo = $this->user_model->chekiyupo($reg_no, $password);
+				if($chekikamayupo == 1){
+					$user_info = $this->user_model->getmyinfo($reg_no);
 
-				if($user_id){
-					//create session
-					$user_data = array(
-						 'user_id' => $user_id,
-						 'reg_no' => $reg_no,
-						 'logged_in' => true
-					);
+						foreach($user_info as $info){
+							$myuser_id = $info->id;
+							$myrole_id = $info->role_id;
+								//create session
+								$user_data = array(
+									 'user_id' => $myuser_id,
+									 'reg_no' => $reg_no,
+									 'logged_in' => true
+								);
+						if($user_info){		
+						$this->session->set_userdata($user_data);
+						switch($myrole_id){
 
-					$this->session->set_userdata($user_data);
-						//set messege
-						$this->session->set_flashdata('user_loggedin', 'You are now loged in view content');
+							case '1':
+							redirect("index.php/Teacher/homep");
+							break;
 
-						redirect('index.php/registered/homep');
-				}else{
-						//set messege
-						$this->session->set_flashdata('login_failed', 'Invalid user login');
+							case '2':
+							redirect("index.php/Student/home");
+							break;
 
-						redirect('index.php/registered/homep');
+							case '3':
+							redirect("index.php/Registered/index");
+							break;
+
+							default:
+							redirect("index.php/users");
+							break;
+						}
+					}
+							
+					}
 				}
-
-			
-			
+				else{
+					echo "Failed to login, Plz enter valid data";
+				}
 			}	 	
 	 	}
 
-	 	// public function failed(){
-		// 		 $data['title'] = 'Sign in';
+	 	public function failed(){
+				 $data['title'] = 'Sign in failed | try again';
 				 
-	 	// 		$this->load->view('templates/header');
-		// 		$this->load->view('users/login', $data);
-		// 		$this->load->view('templates/footer');	
-	 	// }
+	 			$this->load->view('templates/header');
+				$this->load->view('users/login', $data);
+				$this->load->view('templates/footer');	
+	 	}
 	 	//logout function
 	 	public function logout(){
 	 		//Unset user data
-	 		$this->session->unset_userdata('logged_in');
-	 		$this->session->unset_userdata('user_id');
-	 		$this->session->unset_userdata('reg_no');
+			 $this->session->sess_destroy();
+			 redirect('index.php/users/index');
+
 
 	 		$this->session->set_flashdata('user_loggedout', 'You are now loged out login again');
 
 						redirect('index.php/users/login');
 	 	}
-	 	// check if reg_no exists
-	 	public function check_reg_no_exists($reg_no){
-	 		$this->form_validation->set_message('check_reg_no_exists', 'That reg_no is taken. Choose another one');
-	 		if($this->user_model->check_reg_no_exists($reg_no)){
-	 			return true;
-	 		} else{
-	 			return false;
-	 		}
-	 	}
-
-	 	// check if email exists
-	 	public function check_email_exists($email){
-	 		$this->form_validation->set_message('check_email_exists', 'That emmail is taken. Choose another one');
-	 		if($this->user_model->check_email_exists($email)){
-	 			return true;
-	 		} else{
-	 			return false;
-	 		}
-	 	}
-	 
 	}
