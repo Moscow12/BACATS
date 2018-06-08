@@ -5,10 +5,7 @@
 			return $this->db->insert('users', $data);
 		}
 
-		public function getRole() {
-			$query = $this->db->get('role');
-			return $query->result_array();
-		}
+		
 
 		//login user
 		public function login($reg_no, $password){
@@ -50,4 +47,19 @@
 				false;
 			} 
 		}
+
+//New functions
+public function chekiyupo($reg_no, $password){
+	$this->db->where('reg_no',$reg_no);
+	$this->db->where('password',$password);
+	return $this->db->get('users')->num_rows();
+
+}
+
+public function getmyinfo($reg_no){
+	$this->db->where('reg_no', $reg_no);
+	return $this->db->get('users')->result();
+}
+
+
 	}
