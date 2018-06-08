@@ -11,6 +11,33 @@
 			$query = $this->db->get('users');
 			return $query->result_array();
 		}
+		public function register($data){
+			return $this->db->insert('users', $data);
+		}
+
+		// public function get_students(){
+			
+		// 	$this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
+		// 	$this->db->from('users', 'program', 'student');
+		// 	$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
+		// 	$this->db->where('role_id = 2');
+		// 	$query = $this->db->get();
+		// 	return $query->result_array();
+		// }
+		public function get_teachers(){
+			
+			$this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
+			$this->db->from('users');
+			#$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
+			$this->db->where('role_id = 1');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+		
+		public function getRole() {
+			$query = $this->db->get('role');
+			return $query->result_array();
+		}
 		public function get_details(){
 			
 			$this->db->select('*');
@@ -96,5 +123,33 @@
  				'dept_id' => $this->input->post('dept_id')
  				);
  			return $this->db->insert('course', $data);
- 		}
+		 }
+
+		//getting attendances 
+		public function get_attendance(){
+			$this->db->select('*');
+			$this->db->from('attendance');
+			$this->db->where('id=2'); 
+		}
+
+		//trail
+		public function get_student(){
+			
+			$this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
+			$this->db->from('users');
+			$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
+			$this->db->where('role_id = 2');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function get_students(){
+			
+			$this->db->select('program_name');
+			$this->db->from('program');
+			#$this->db->join('student', 'student.program_id = program.id ','student.program_id = student.user_id', 'inner');
+			#$this->db->where('student.program_id = student.user_id');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
 	}
