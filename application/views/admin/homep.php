@@ -28,9 +28,10 @@
 
 <!--End of table design--> 
 
-<?php echo validation_errors(); ?>
 
-<?php echo form_open('index.php/users/register'); ?>
+<?php if(!($this->session->userdata('user_id'))){
+	redirect('index.php/users/index');
+	}?>
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -42,11 +43,14 @@
 		<link href="<?=base_url();?>assets/css/main.css" rel="stylesheet">
 	</head>
 	<body>
+	<?php echo form_open('index.php/registered/homep'); ?>
 	<div class="row">
 		<!-- <div class="col-md-6"> -->
+		
 			<div class="card mesha">
-				<div class="card-body"><div class="card-header text-center">register</div>
-					<h3 class="card-title text-center"><?php echo $title; ?></h3>
+				<div class="card-body"><div class="card-header text-center"><?php echo $title; ?></div>
+				
+					<?php echo validation_errors(); ?>		
 						<div class="form-group">
 							<label>First Name</label>
 							<input type="text" class="form-control" name="firstname" placeholder=" First Name">
@@ -71,9 +75,8 @@
 									<?php }  ?>
 								</select>
 						</div>
-						<button class="btn btn-primary" type="submit">Submit</button>
-						 <p> if arleady registered	<a href="<?php echo base_url(); ?>index.php/users/login">login</a></p>
-				</div>
+							<button class="btn btn-primary" type="submit">Submit</button>
+						</div>
 			</div>
 		<!-- </div> -->
 	</div>
