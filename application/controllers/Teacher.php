@@ -1,7 +1,4 @@
 <?php 
-	/**
-	* 
-	*/
 	class Teacher extends CI_Controller{
 		
 		public  function __construct()
@@ -9,15 +6,18 @@
 			parent::__construct();
 			$this->load->model('teacher_model');
 		}
+		public function index(){
+			
+		}
 
 		public function homep(){
 			$data['title'] = 'Registered students';
 
 			$data['registers'] = $this->register_model->get_regestered();
 			
-			$this->load->view('templates/header2');
+			$this->load->view('teacher/header2');
 			 $this->load->view('admin/homep', $data); //>>it will be changed/removed
-			$this->load->view('templates/footer');
+			$this->load->view('teacher/footer');
 		}
 
 		public function profile(){
@@ -34,9 +34,9 @@
 	 		$this->form_validation->set_rules('position', 'Position', 'required');
 			
 			if($this->form_validation->run() ===FALSE){
-				$this->load->view('templates/header2');
+				$this->load->view('teacher/header2');
 				$this->load->view('teacher/profile', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('teacher/footer');
 			} else{
 
 				
@@ -65,9 +65,9 @@
 
 			$data['attendances'] = $this->teacher_model->attendance();
 
-	 		$this->load->view('templates/header2');
+	 		$this->load->view('teacher/header2');
 			$this->load->view('teacher/attendance', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('teacher/footer');
 	 	}
 		
 
