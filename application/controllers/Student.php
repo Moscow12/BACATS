@@ -9,20 +9,23 @@ class Student extends CI_Controller{
     public function home(){
         $data['title'] = 'Registered students';
 
-        $data['contents'] = $this->student_model->get_content();
+       // $data['$query'] = $this->student_model->get_content();
+        // echo "<pre>";
+        //  print_r($this->student_model->get_content());
         
-        $this->load->view('templates/header');
+        $this->load->view('student/header');
         $this->load->view('student/home', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('student/footer');
     }
 
     public function profile(){
         $data['title'] = 'Update you profile';
         $data['profiles'] = $this->student_model->set_stprofile();
 
-        $this->load->view('templates/header');
+        $this->load->view('student/header');
         $this->load->view('student/stprofile', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('student/footer');
     }
 
+   
 }
