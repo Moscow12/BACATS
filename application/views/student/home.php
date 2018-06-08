@@ -14,3 +14,10 @@
    Bepunctual attend classes
   </div>
 </div>
+
+ <!-- <?php foreach($query->result_array() as $row): ?>
+        <!-- <tr>
+            <td><#?php echo $row->role_name; ?></td>
+            <td><#?php echo $row->reg_no;?></td>
+        </tr> -->
+<?php endforeach; ?> -->

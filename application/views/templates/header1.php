@@ -33,7 +33,7 @@
             <span class="nav-link-text">Admin Dashboard</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="addstudent">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Add Student </span>
@@ -44,7 +44,7 @@
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Add Teacher</span>
           </a>
-        </li>
+        </li> -->
         <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="charts.html">
             <i class="fa fa-fw fa-area-chart"></i>
@@ -80,7 +80,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="collage">Collage</a>
+              <a href="#" data-toggle="modal" data-target="#addcollage" >Collage</a>
             </li>
             <li>
               <a href="dept">Depertment</a>
@@ -260,7 +260,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login">Logout</a>
+            <a class="btn btn-primary" href="<?=base_url('index.php/users/logout')?>">Logout</a>
           </div>
         </div>
       </div>

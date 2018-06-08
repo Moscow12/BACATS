@@ -13,7 +13,7 @@
 		<link href="<?=base_url();?>assets/css/main.css" rel="stylesheet">
 	</head>
 	<body>
-	<div class="row">
+	<!-- <div class="row">
 		<!-- <div class="col-md-6"> -->
 			<div class="card mesha">
 				<div class="card-body"><div class="card-header text-center">register</div>
