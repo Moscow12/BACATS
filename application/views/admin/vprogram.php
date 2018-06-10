@@ -1,4 +1,7 @@
 
+<?php if(!($this->session->userdata('user_id'))){
+	redirect('index.php/users/index');
+	}?>
 <div class="mb-0 mt-4">    
   <div class="card-columns">
       <div class="card mb-3">
