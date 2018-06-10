@@ -40,4 +40,29 @@
         public function set_stprofile(){
             
         }
+        public function content(){
+            
+        }
+
+        public function enrolls(){
+
+            $this->db->select('*');
+            $this->db->from('course');
+            $this->db->join('student', 'course.id=student.course_id');
+            $this->db->join('student_course', 'course');
+            $this->db->where('student.user_id = course.student_id');
+
+        }
+
+        public function getattendance(){
+
+            $this->db->select('attendance_date, course_id, student_id');
+            $this->db->from('attendance');
+            $this->db->join('course', 'attendance.course_id = course.id', 'inner');
+            $this->db->join('student', 'attendance.student_id = student.id', 'inner');
+            $this->db->where('course_id = course_code');
+
+            #return $this->db-get('attendance')->result();
+
+        }
     }
