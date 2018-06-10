@@ -16,7 +16,7 @@
 			$data['registers'] = $this->register_model->get_regestered();
 			
 			$this->load->view('teacher/header2');
-			 $this->load->view('admin/homep', $data); //>>it will be changed/removed
+			 $this->load->view('admin/index', $data); //>>it will be changed/removed
 			$this->load->view('teacher/footer');
 		}
 
@@ -27,11 +27,12 @@
 			$this->load->library('form_validation');
 
 	 		$this->form_validation->set_rules('gender', 'Gender', 'required');
-	 		$this->form_validation->set_rules('t_dob', 'Date of Birth', 'required');
-	 		$this->form_validation->set_rules('skill', 'Skill', 'required');
-	 		$this->form_validation->set_rules('phoneno', 'Phone number', 'required');
-	 		$this->form_validation->set_rules('dept_name', 'Depertment', 'required');
-	 		$this->form_validation->set_rules('position', 'Position', 'required');
+	 		$this->form_validation->set_rules('dob', 'Date of Birth', 'required');
+	 		$this->form_validation->set_rules('email', 'email', 'required');
+			$this->form_validation->set_rules('phoneno', 'Phone number', 'required');
+			$this->form_validation->set_rules('office_no', 'Office number', 'required');
+	 		$this->form_validation->set_rules('dept_id', 'Depertment', 'required');
+	 		#$this->form_validation->set_rules('position', 'Position', 'required');
 			
 			if($this->form_validation->run() ===FALSE){
 				$this->load->view('teacher/header2');
@@ -42,11 +43,12 @@
 				
 				$data = array(
 				'gender' => $this->input->post('gender'),
-				't_dob' => $this->input->post('t_dob'),
-				'skill' => $this->input->post('skill'),
+				'dob' => $this->input->post('dob'),
+				'email' => $this->input->post('email'),
 				'phoneno' => $this->input->post('phoneno'),
-				'dept_name' => $this->input->post('dept_name'),
-				'position' => $this->input->post('position')
+				'office_no' => $this->input->post('office_no'),
+				'dept_id' => $this->input->post('dept_id')
+				#'position' => $this->input->post('position')
 			);
 
 			//insert user
@@ -56,7 +58,7 @@
 				//set messege
 				$this->session->set_flashdata('teacher_register', 'Your profile has been updated');
 
-				redirect('index.php/Teacher/homep');
+				redirect('index.php/Teacher/profile');
 			}	 	
 	 	}
 	 	public function attendance(){
@@ -68,7 +70,37 @@
 	 		$this->load->view('teacher/header2');
 			$this->load->view('teacher/attendance', $data);
 			$this->load->view('teacher/footer');
-	 	}
-		
+		 }
+		 #teacher course registration
+		public function course(){
+			$data['title'] = 'Register Course You Instruct';
+			$data['Courses'] = $this->register_model->get_course();
+
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('course_name', 'Your Course', 'required');
+
+			if($this->form_validation->run() ===FALSE){
+				$this->load->view('teacher/header2');
+				$this->load->view('teacher/course', $data);
+				$this->load->view('teacher/footer');
+			}else{
+				$data = array(
+				'course_name' => $this->input->post('couse_name'),
+				);
+			}
+		}
+
+		public function student(){
+			$data['title'] = 'Enrolled Student';
+
+			$data['students'] = $this->register_model->get_student();
+			
+			$data['programes'] = $this->register_model->get_students();
+							
+			$this->load->view('teacher/header2');
+			$this->load->view('teacher/student', $data);
+			$this->load->view('teacher/footer');
+		}
 
 	}
