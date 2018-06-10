@@ -1,3 +1,7 @@
+
+<?php if(!($this->session->userdata('user_id'))){
+	redirect('index.php/users/index');
+	}?>
 <?php echo form_close(); ?>
 <div class="row">
       <div class="col-sm-6">
