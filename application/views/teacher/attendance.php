@@ -1,4 +1,7 @@
 
+<?php if(!($this->session->userdata('user_id'))){
+	redirect('index.php/users/index');
+	}?>
 <?php echo $title; ?>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
