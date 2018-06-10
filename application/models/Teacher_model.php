@@ -15,12 +15,31 @@
 		}
 	public function register($data){
 			//User data array
+			$data = array(
+				
+				'gender' => $this->input->post('gender'),
+				'dob' => $this->input->post('dob'),
+				'email' => $this->input->post('email'),
+				'phoneno' => $this->input->post('phoneno'),
+				'office_no' => $this->input->post('office_no'),
+				'dept_id' => $this->input->post('dept_id')
 			
-			return $this->db->insert('teacher', $data);
+			);
+			
+			#return $this->db->insert('teacher', $data);
 			
 		}
 	public function attendance(){
 		
+		}
+		
+#function should insert data to the table teacher course
+	public function create_course(){
+			$data = array(
+				'course_id' => $this->input->post('course_id'),
+			
+				);
+			return $this->db->insert('teacher_course', $data);
 		}
 
 	}
