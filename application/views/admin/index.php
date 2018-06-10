@@ -1,3 +1,7 @@
+
+<?php if(!($this->session->userdata('user_id'))){
+	redirect('index.php/users/index');
+	}?>
 <!-- Icon Cards-->
 <div class="row">
         <div class="col-xl-3 col-sm-6 mb-3">
