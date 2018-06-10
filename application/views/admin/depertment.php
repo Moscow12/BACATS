@@ -1,3 +1,7 @@
+
+<?php if(!($this->session->userdata('user_id'))){
+	redirect('index.php/users/index');
+	}?>
 <?php echo form_open('index.php/registered/dept'); ?>
             
     <div class="card ">
