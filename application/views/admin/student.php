@@ -22,17 +22,19 @@
 					<th><button class="btn btn-danger"> <i class = "fa fa-trash"></button></i></th>
 				</tr>
 			</thead>
-			<tr>
-				<?php foreach($students as $users){?>
+			
+				<?php foreach($students as $user_view){?>
+					<tr>
 					<th scope="row">1<?php #$count = $row; ?></th>
-					<td><?php echo $users['name']; ?> </td>
-					<td><?php echo $users['reg_no']; ?> </td>
+					<td><?php echo $user_view['name']; ?> </td>
+					<td><?php echo $user_view['reg_no']; ?> </td>
+					<td><?php echo $user_view['program_name']; ?></td>
+					<td><button class="btn btn-success">View</button></td>
+					<td><button class="btn btn-info">Edit</button></td>
+					<td><button class="btn btn-danger">Delete</button></td>
 				
 				<?php }?>
-				<?php foreach($programes as $program) {?>
-					<td><?php echo $program['program_name']; ?></td>
-				<?php }?>
-			<tr><br/>
+				
 		</table>
 	</div>
 </div>
