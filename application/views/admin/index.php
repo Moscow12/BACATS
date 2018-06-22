@@ -2,6 +2,9 @@
 <?php if(!($this->session->userdata('user_id'))){
 	redirect('index.php/users/index');
 	}?>
+  <?php if($this->session->flashdata('success_login')): ?>
+  <p class="alert alert-dismissable alert-success"><?php echo $this->session->flashdata('success_login'); ?></p>
+  <?php endif; ?>
 <!-- Icon Cards-->
 <div class="row">
         <div class="col-xl-3 col-sm-6 mb-3">
