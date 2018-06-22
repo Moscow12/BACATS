@@ -38,6 +38,18 @@
         }
 
         public function set_stprofile(){
+            $data = array(
+				
+				'gender' => $this->input->post('gender'),
+				'dob' => $this->input->post('dob'),
+				'email' => $this->input->post('email'),
+				'phoneno' => $this->input->post('phoneno'),
+				'user_id' =>$this->session->userdata('user_id'),
+                'location' => $this->input->post('location')
+			
+			);
+			
+			return $this->db->insert('student', $data);
             
         }
         public function content(){
