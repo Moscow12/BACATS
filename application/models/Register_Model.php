@@ -26,7 +26,7 @@
 		// }
 		public function get_teachers(){
 			
-			$this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
+			$this->db->select('reg_no,id, CONCAT(firstname , ' . ', mname , ' . ', lastname) as name', 'program_name');
 			$this->db->from('users');
 			#$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
 			$this->db->where('role_id = 1');
@@ -134,11 +134,15 @@
 
 		//trail
 		public function get_student(){
+			$this->db->select('CONCAT(user_view.firstname, '.',user_view.mname,'.', user_view.lastname) as name, user_view.reg_no, program.program_name');
+			$this->db->FROM ('user_view');
+			$this->db-> join ('program','user_view.program_id = program.id', 'inner');
+			#$this->db->where('user_view.program_id = program.id');
 			
-			$this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
-			$this->db->from('users');
-			$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
-			$this->db->where('role_id = 2');
+			// $this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
+			// $this->db->from('users');
+			// #$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
+			// $this->db->where('role_id = 2');
 			$query = $this->db->get();
 			return $query->result_array();
 		}
