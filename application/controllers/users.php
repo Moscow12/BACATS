@@ -61,6 +61,7 @@
 
 							case '3':
 							redirect("index.php/Registered/index");
+							$this->session->set_flashdata('success_login', 'You are now logged in as admin');
 							break;
 
 							default:
