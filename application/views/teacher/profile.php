@@ -41,10 +41,11 @@
 									<?php endforeach; ?>  
 								</select>
 							</div>
-							<button class="btn btn-primary" type="submit">Submit</button>
+							<button class="btn btn-primary" type="submit">Submit</button><a href="view_profile">View profile</a>
 							<?php echo form_close(); ?>
 					</div>	
 				</div>			
 			</div>
+			
 	</div>				
 	
