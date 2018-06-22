@@ -18,13 +18,14 @@
   <link href="<?=base_url();?>assets/css/sb-admin.css" rel="stylesheet">
 </head>
 
-<body class="fixed-nav sticky-footer bg-warning" id="page-top">
+<body class="fixed-nav sticky-footer bg-light " id="page-top">
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-warning bg-warning fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-warning bg-light  fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">BACATS</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
@@ -73,7 +74,7 @@
             </li>
           </ul>
         </li>-->
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseduser" data-parent="#exampleAccordion">
                 <i class="fa fa-fw fa-users"></i>
                 <span class="nav-link-text">Users</span>
@@ -101,7 +102,7 @@
             </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Collage">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsedcollage" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-check"></i>
             <span class="nav-link-text">Collage</span>
@@ -122,7 +123,7 @@
           </ul>
         </li>
         
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Depertament">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseddept" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-check"></i>
             <span class="nav-link-text">Depertament</span>
@@ -143,7 +144,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Program">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsedprogram" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-check"></i>
             <span class="nav-link-text">Program</span>
@@ -164,7 +165,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Course">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsedcourse" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-check"></i>
             <span class="nav-link-text">Course</span>
@@ -185,7 +186,7 @@
           </ul>
         </li>
         
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Attendance">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Attendance</span>
@@ -205,7 +206,7 @@
             </li>
            
           </ul>
-        </li>
+        </li> -->
        
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="#">
@@ -270,7 +271,13 @@
             <h6 class="dropdown-header">Profile</h6>
          
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" type="btn btn-info" href="#">Update profile</a>
+            <div align="center"><?php if($this->session->userdata('logged_in')) : ?>
+            <?php echo $this->session->userdata('reg_no');?>
+            <?php endif; ?>
+          </div>
+            
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" type="btn btn-info" href="profile">Update profile</a>
           </div>
         </li>
        
