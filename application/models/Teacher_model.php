@@ -22,11 +22,14 @@
 				'email' => $this->input->post('email'),
 				'phoneno' => $this->input->post('phoneno'),
 				'office_no' => $this->input->post('office_no'),
+				'user_id' =>$this->session->userdata('user_id'),
+				
 				'dept_id' => $this->input->post('dept_id')
+				
 			
 			);
 			
-			#return $this->db->insert('teacher', $data);
+			return $this->db->insert('teacher', $data);
 			
 		}
 	public function attendance(){
@@ -40,6 +43,18 @@
 			
 				);
 			return $this->db->insert('teacher_course', $data);
-		}
-
 	}
+	public function get_profile(){
+		#$this->db->select('reg_no, CONCAT( firstname, '.', lname, '.', lastname) as name ', 'email, phoneno, officeno, dob, gender');
+		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name' );
+		$this->db->from( 'users u');
+		$this->db->join('teacher t', 't.user_id = u.id', 'left');
+		$this->db->join('department d', 'd.id = t.dept_id', 'left');
+		$this->db->where('u.role_id= 1');
+		#$this->db->where('id', $this->session->userdata('user_id'));
+		$this->session->userdata('user_id');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+}
