@@ -5,6 +5,7 @@
 		{
 			parent::__construct();
 			$this->load->model('teacher_model');
+			$this->load->library('session');
 		}
 		public function index(){
 			
@@ -32,7 +33,6 @@
 			$this->form_validation->set_rules('phoneno', 'Phone number', 'required');
 			$this->form_validation->set_rules('office_no', 'Office number', 'required');
 	 		$this->form_validation->set_rules('dept_id', 'Depertment', 'required');
-	 		#$this->form_validation->set_rules('position', 'Position', 'required');
 			
 			if($this->form_validation->run() ===FALSE){
 				$this->load->view('teacher/header2');
@@ -48,17 +48,24 @@
 				'phoneno' => $this->input->post('phoneno'),
 				'office_no' => $this->input->post('office_no'),
 				'dept_id' => $this->input->post('dept_id')
-				#'position' => $this->input->post('position')
 			);
 
 			//insert user
 
+			if($this->session->userdata('user_id')===NULL){
+				redirect('index.php/users/login');
+			}else{
 				$this->teacher_model->register($data);
-
-				//set messege
 				$this->session->set_flashdata('teacher_register', 'Your profile has been updated');
-
+				
 				redirect('index.php/Teacher/profile');
+			}
+				// $this->teacher_model->register($data);
+
+				// //set messege
+				// $this->session->set_flashdata('teacher_register', 'Your profile has been updated');
+
+				// redirect('index.php/Teacher/profile');
 			}	 	
 	 	}
 	 	public function attendance(){
@@ -96,11 +103,19 @@
 
 			$data['students'] = $this->register_model->get_student();
 			
-			$data['programes'] = $this->register_model->get_students();
+			// $data['programes'] = $this->register_model->get_students();
 							
 			$this->load->view('teacher/header2');
 			$this->load->view('teacher/student', $data);
 			$this->load->view('teacher/footer');
 		}
 
+		public function view_profile(){
+			$data['title'] = 'My Profile';
+			$data['profile'] = $this->teacher_model->get_profile();
+
+			$this->load->view('teacher/header2');
+			$this->load->view('teacher/vprofile', $data);
+			$this->load->view('teacher/footer');
+		}
 	}
