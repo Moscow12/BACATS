@@ -20,12 +20,12 @@ class Student extends CI_Controller{
         $data['profiles'] = $this->student_model->set_stprofile();
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('firstname', 'First Name', 'required');
-        $this->form_validation->set_rules('mname', 'Middle Name', 'required');
-        $this->form_validation->set_rules('lastname', 'Last Name', 'required');
-         $this->form_validation->set_rules('reg_no', 'User Name', 'required|callback_check_reg_no_exists');
-       //   $this->form_validation->set_rules('password', 'Password', 'required');
-       //   $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
+        
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('dob', 'Date of Birth', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('phoneno', 'Phone number', 'required');
+        $this->form_validation->set_rules('location', 'Location', 'required');
       
       if($this->form_validation->run() ===FALSE){
           $this->load->view('student/header');
