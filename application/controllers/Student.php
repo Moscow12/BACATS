@@ -17,14 +17,16 @@ class Student extends CI_Controller{
 
     public function profile(){
         $data['title'] = 'Update you profile';
-        $data['profiles'] = $this->student_model->set_stprofile();
+        #$data['profiles'] = $this->student_model->set_stprofile();
+        $data['Program'] = $this->register_model->get_program();
+        
 
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('gender', 'Gender', 'required');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'required');
         $this->form_validation->set_rules('email', 'email', 'required');
-        $this->form_validation->set_rules('phoneno', 'Phone number', 'required');
+        $this->form_validation->set_rules('phoneno', 'Phone number', 'required|numeric');
         $this->form_validation->set_rules('location', 'Location', 'required');
       
       if($this->form_validation->run() ===FALSE){
@@ -35,22 +37,38 @@ class Student extends CI_Controller{
           #Encrept password
           // $enc_password = md5($this->input->post('BACATS@2018'));
           $data = array(
-          'firstname' => $this->input->post('firstname'),
-          'mname' => $this->input->post('mname'),
-          'lastname' => $this->input->post('lastname'),
-          'reg_no' => $this->input->post('reg_no'),
-          // 'password' => $this->input->post('password'),
-          'role_id' => $this->input->post('role_id')				
-      
-      );
+            
+            'gender' => $this->input->post('gender'), 
+            'dob' => $this->input->post('dob'),
+            'email' => $this->input->post('email'),
+            'phoneno' => $this->input->post('phoneno'),
+            'user_id' =>$this->session->userdata('user_id'),
+            'location' => $this->input->post('location'),
+            'program_id' => $this->input->post('program_id')
+            
+        
+        );
       
       //insert user
-          $this->user_model->register($data);
-      
-          //set messege
-          $this->session->set_flashdata('user_register', 'registered');
-          redirect('index.php/student/profile');
+         //insert user
+
+			if($this->session->userdata('user_id')===NULL){
+				redirect('index.php/users/login');
+			}else{
+				$this->student_model->set_stprofile($data);
+				$this->session->set_flashdata('student_register', 'Your profile has been updated');
+				
+				redirect('index.php/Student/Myprofile');
+			}
       }	 	
+    }
+    public function Myprofile(){
+        $data['title'] = 'My Profile';
+        $data['profile'] = $this->student_model->get_profile();
+
+        $this->load->view('student/header');
+        $this->load->view('student/stvprofile', $data);
+        $this->load->view('student/footer');
     }
     
 

@@ -11,38 +11,38 @@
 						<caption>Registered as</caption> 
 							
 							<tbody>
-							<?php foreach($profile as $tprofile_view){?>
+							<?php foreach($profile as $stprofile_view){?>
 								<tr> 
 									<th>Name</th>
-									<td><?php echo $tprofile_view['name']; ?></td>
+									<td><?php echo $stprofile_view['name']; ?></td>
 								</tr>	<?php }?>
 								<tr>	
 									<th>Reg. No.</th>
-									<td><?php echo $tprofile_view['reg_no']; ?></td>
+									<td><?php echo $stprofile_view['reg_no']; ?></td>
 								</tr>
 								<tr>	
-									<th>Office Number</th>
-									<td><?php echo $tprofile_view['office_no']; ?></td>
+									<th>Location</th>
+									<td><?php echo $stprofile_view['location']; ?></td>
 								</tr>
 								<tr>	
 									<th>DOB</th>
-									<td><?php echo $tprofile_view['dob'];?></td>
+									<td><?php echo $stprofile_view['dob'];?></td>
 								</tr>
 								<tr>	
 									<th>Gender</th>
-									<td><?php echo $tprofile_view['gender']; ?></td>
+									<td><?php echo $stprofile_view['gender']; ?></td>
 								</tr>
 								<tr>	
 									<th>Phone Number</th>
-									<td><?php echo $tprofile_view['phoneno']; ?></td>
+									<td><?php echo $stprofile_view['location']; ?></td>
 								</tr>
 								<tr>	
 									<th>Email Address</th>
-									<td><?php echo $tprofile_view['email']; ?></td>
+									<td><?php echo $stprofile_view['email']; ?></td>
 								</tr> 
 								<tr> 
 									<th>Department</th> 
-									<td><?php echo $tprofile_view['dept_name']; ?></td>
+									<td><?php echo $stprofile_view['program_name']; ?></td>
 								<tr> 
 						
 							</tbody> 

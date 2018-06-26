@@ -109,13 +109,13 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapsedcollage">
             <li>
-              <a href="collage" data-toggle="modal" data-target="#addcollage" >
+              <a href="collage" data-toggle="modal" data-target="#addcollage1" >
                   <i class="fa fa-fw fa-plus"></i>
                   <span class="nav-link-text">  Add Collage</span>
               </a>
             </li>
             <li>
-              <a href="#collages">
+              <a href="Collagies">
                   <i class="fa fa-fw fa-eye"></i>
                   <span class="nav-link-text">Collage</span>
               </a>

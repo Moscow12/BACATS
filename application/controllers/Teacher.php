@@ -58,7 +58,7 @@
 				$this->teacher_model->register($data);
 				$this->session->set_flashdata('teacher_register', 'Your profile has been updated');
 				
-				redirect('index.php/Teacher/profile');
+				redirect('index.php/Teacher/view_profile');
 			}
 				// $this->teacher_model->register($data);
 
@@ -83,28 +83,39 @@
 			$data['title'] = 'Register Course You Instruct';
 			$data['Courses'] = $this->register_model->get_course();
 
+			$this->load->view('teacher/header2');
+			$this->load->view('teacher/course', $data);
+			$this->load->view('teacher/footer');
+		}
+		public function submitcourse(){
+
 			$this->load->library('form_validation');
+			$data['title'] = 'Register Course You Instruct';
 			
-			$this->form_validation->set_rules('course_name', 'Your Course', 'required');
+			$data['Courses'] = $this->register_model->get_course();
+			
+			$this->form_validation->set_rules('course_id', 'Course name', 'required');
 
 			if($this->form_validation->run() ===FALSE){
 				$this->load->view('teacher/header2');
 				$this->load->view('teacher/course', $data);
 				$this->load->view('teacher/footer');
 			}else{
-				$data = array(
-				'course_name' => $this->input->post('couse_name'),
-				);
+				$this->teacher_model->create_course();
+
+				redirect('index.php/teacher/student');
 			}
 		}
+		
 
+		//view student enrolled the course
 		public function student(){
 			$data['title'] = 'Enrolled Student';
 
-			$data['students'] = $this->register_model->get_student();
+			$data['students'] = $this->teacher_model->studentcourse();
 			
 			// $data['programes'] = $this->register_model->get_students();
-							
+			
 			$this->load->view('teacher/header2');
 			$this->load->view('teacher/student', $data);
 			$this->load->view('teacher/footer');

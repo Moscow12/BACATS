@@ -40,21 +40,30 @@
 	public function create_course(){
 			$data = array(
 				'course_id' => $this->input->post('course_id'),
-			
-				);
+				'teacher_id' => $this->session->userdata('user_id')				
+			);
 			return $this->db->insert('teacher_course', $data);
 	}
+
+	public function studentcourse(){
+		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, p.program_name' );
+		$this->db->from('user_view');
+		$this->db->join('program p', 'p.id = user_view.program_id', 'inner');
+
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 	public function get_profile(){
-		#$this->db->select('reg_no, CONCAT( firstname, '.', lname, '.', lastname) as name ', 'email, phoneno, officeno, dob, gender');
-		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name' );
-		$this->db->from( 'users u');
-		$this->db->join('teacher t', 't.user_id = u.id', 'left');
-		$this->db->join('department d', 'd.id = t.dept_id', 'left');
-		$this->db->where('u.role_id= 1');
-		#$this->db->where('id', $this->session->userdata('user_id'));
-		$this->session->userdata('user_id');
+
+		$user = $this->session->userdata('user_id');		
+		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, office_no, dob, gender, d.dept_name' );
+		$this->db->from( 'tprofile_view p');
+		$this->db->join('department d', 'd.id = p.dept_id', 'inner');
+		$this->db->where('p.id', $user);
+		
 		$query = $this->db->get();
 		return $query->result_array();
 	}
 
+	
 }

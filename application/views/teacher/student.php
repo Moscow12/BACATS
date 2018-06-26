@@ -20,13 +20,12 @@
 				</tr>
 			</thead>
 			<!-- Here the the table should query from table student course -->
-				<?php foreach($students as $user_view){?>
+				<?php $numb = 1; foreach($students as $user_view){?>
 					<tr>
-					<th scope="row">1<?php #$count = $row; ?></th>
+					<th scope="row"><?php echo $numb++; ?></th>
 					<td><?php echo $user_view['name']; ?> </td>
 					<td><?php echo $user_view['reg_no']; ?> </td>
 					<td><?php echo $user_view['program_name'];?></td>
-                    <!-- <td><button class="btn btn-success"><i class = "fa fa-gear"></button></i></td> -->
                     <td><button class="btn btn-success"><i class = "fa fa-eye"></button></i></td>
 					<tr><br/>
 				<?php }?>

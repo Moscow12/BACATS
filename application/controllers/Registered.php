@@ -329,7 +329,7 @@
 
 					//set message
 					//   $this->session->set_flashdata('course_created', 'Your Course has been created');
-					// redirect('index.php/registered/course');
+					redirect('index.php/registered/Courses');
 				}
 			}
 

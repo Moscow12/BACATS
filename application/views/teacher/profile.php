@@ -12,7 +12,7 @@
 							<?php echo validation_errors(); ?>
 								<div class="form-group">
 								<label>Email address</label>
-									<input type="text" name="email" placeholder="Enter Email" class="form-control">
+									<input type="email" name="email" placeholder="Enter Email" class="form-control">
 								</div>
 								<div class="form-group">
 									<label>Gendar</label>
@@ -23,7 +23,7 @@
 								</div>
 								<div class="form-group">
 									<label>DOB</label>
-									<input type="text" name="dob" placeholder="Enter Date of Birth" class="form-control">
+									<input type="date" name="dob" placeholder="Enter Date of Birth" class="form-control">
 								</div>
 								<div class="form-group">
 									<label>Office no</label>

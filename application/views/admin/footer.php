@@ -97,7 +97,7 @@
 
 
 <!-- Logout Modal-->
-<div class="modal fade" id="addcollage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLael" aria-hidden="true">
+<!-- <div class="modal fade" id="addcollage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLael" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header" style="background-color:yellow; border-radius:7px">
@@ -116,14 +116,14 @@
           </div>
           <div class="form-group col-md-12">
             <button class="btn btn-primary btn-block"  type="submit"><span class="fa fa-sign-in"></span> Submit</button>
-          </div>
+          </div> -->
           <!--<div class="modal-footer">
             
             
-          </div>-->
+          </div>-
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?=base_url();?>assets/vendor/jquery/jquery.min.js"></script>

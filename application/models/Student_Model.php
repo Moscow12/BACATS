@@ -40,17 +40,29 @@
         public function set_stprofile(){
             $data = array(
 				
-				'gender' => $this->input->post('gender'),
+				'gender' => $this->input->post('gender'), 
 				'dob' => $this->input->post('dob'),
 				'email' => $this->input->post('email'),
 				'phoneno' => $this->input->post('phoneno'),
-				'user_id' =>$this->session->userdata('user_id'),
-                'location' => $this->input->post('location')
+                'location' => $this->input->post('location'),
+                'program_id' => $this->input->post('program_id'),          
+                'user_id' =>$this->session->userdata('user_id'),
+                
 			
 			);
 			
 			return $this->db->insert('student', $data);
             
+        }
+        public function get_profile(){
+            $user = $this->session->userdata('user_id');		
+            $this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, location, dob, gender, d.program_name' );
+            $this->db->from( 'sprofile_view s');
+            $this->db->join('program d', 'd.id = s.program_id', 'inner');
+            $this->db->where('s.id', $user);
+            
+            $query = $this->db->get();
+            return $query->result_array();
         }
         public function content(){
             
