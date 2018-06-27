@@ -54,6 +54,7 @@
 			return $this->db->insert('student', $data);
             
         }
+
         public function get_profile(){
             $user = $this->session->userdata('user_id');		
             $this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, location, dob, gender, d.program_name' );
@@ -64,6 +65,7 @@
             $query = $this->db->get();
             return $query->result_array();
         }
+        
         public function content(){
             
         }
@@ -78,15 +80,52 @@
 
         }
 
-        public function getattendance(){
+       
+        public function tought_by(){
+            $this->db->select('CONCAT( users.firstname, users.mname, users.lastname) as Byname,
+             course.course_name, course.course_code');
+             $this->db->from('users');
+             $this->db->join('teacher', 'users.id = teacher.user_id', 'inner');
+             $this->db->join('teacher_course', 'teacher.id = teacher_course.teacher_id', 'inner');
+             $this->db->join('course', 'teacher_course.course_id = course.id', 'inner');
+             $this->db->where('role_id= 1');
 
-            $this->db->select('attendance_date, course_id, student_id');
-            $this->db->from('attendance');
-            $this->db->join('course', 'attendance.course_id = course.id', 'inner');
-            $this->db->join('student', 'attendance.student_id = student.id', 'inner');
-            $this->db->where('course_id = course_code');
-
-            #return $this->db-get('attendance')->result();
+             $query = $this->db->get();
+            return $query->result_array();
 
         }
-    }
+
+
+        public function two(){
+            foreach($_POST['course'] as $selected){
+                $selected;
+            
+                 $id = $this->session->userdata('user_id');
+            $this->db->query("insert into student_course (student_id,course_id)
+            values('$id','$selected')");   
+
+            }
+
+        }
+
+
+        //here
+        public function course_confirmed(){
+            $this->db->select('course_name, course_code');
+            
+        }
+
+
+
+        public function getattendance(){
+
+        $this->db->select('attendance_date, course_id, student_id');
+        $this->db->from('attendance');
+        $this->db->join('course', 'attendance.course_id = course.id', 'inner');
+        $this->db->join('student', 'attendance.student_id = student.id', 'inner');
+        $this->db->where('course_id = course_code');
+
+        #return $this->db-get('attendance')->result();
+
+        }
+}
