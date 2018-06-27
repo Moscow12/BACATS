@@ -32,10 +32,7 @@
 			return $this->db->insert('teacher', $data);
 			
 		}
-	public function attendance(){
-		
-		}
-		
+	
 #function should insert data to the table teacher course
 	public function create_course(){
 			$data = array(
@@ -56,7 +53,7 @@
 	public function get_profile(){
 
 		$user = $this->session->userdata('user_id');		
-		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, office_no, dob, gender, d.dept_name' );
+		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.',lastname) as name, email, phoneno, office_no, dob, gender, d.dept_name');
 		$this->db->from( 'tprofile_view p');
 		$this->db->join('department d', 'd.id = p.dept_id', 'inner');
 		$this->db->where('p.id', $user);
@@ -64,6 +61,17 @@
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+ 
+	//modal attendance
+	public function attendance(){
+		
+		
+	}
 
+	public function day_attendance(){
+		
+	}
+	
+	
 	
 }
