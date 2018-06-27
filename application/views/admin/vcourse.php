@@ -16,11 +16,11 @@
                     <th><i class="fa fa-eye"></i><span>Attandance</span></th>
                 </tr>
                 
-                    <?php foreach ($courses as $course){ ?>
+                    <?php foreach ($courses as $course_view){ ?>
                         <tr>
-                            <td><?php echo $course['course_code']; ?></td>
-                            <td><?php echo $course['course_name']; ?></td>
-                            <td ></td>
+                            <td><?php echo $course_view['course_code']; ?></td>
+                            <td><?php echo $course_view['course_name']; ?></td>
+                            <td ><?php echo $course_view['byname']?></td>
                             <td><button class="btn btn-primary "> <i class = "fa fa-eye"></i></button></td>
                         </tr>
                     <?php } ?>
