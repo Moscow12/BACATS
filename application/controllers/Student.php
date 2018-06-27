@@ -72,17 +72,36 @@ class Student extends CI_Controller{
     }
     
 
+    // public function enroll(){
+
+    //     $data['title'] = 'Enroll the Course';
+    //     $data['courses'] = $this->register_model->get_course();
+
+    //     $this->load->library('form_validation');
+
+
+    //     $this->load->view('student/header');
+    //     $this->load->view('student/regcourse', $data);
+    //     $this->load->view('student/footer');
+
+    // }
     public function enroll(){
 
         $data['title'] = 'Enroll the Course';
-        $data['courses'] = $this->register_model->get_course();
+        $data['courses'] = $this->student_model->tought_by();
 
-        $this->load->view('student/header');
-        $this->load->view('student/regcourse', $data);
-        $this->load->view('student/footer');
+
+        $this->load->library('form_validation');
+
+
+            $this->load->view('student/header');
+            $this->load->view('student/regcourse', $data);
+            $this->load->view('student/footer');
+    
 
     }
 
+   
     //function to view user logged in
     public function user_loggedin($page = 'student'){
         
@@ -102,6 +121,30 @@ class Student extends CI_Controller{
         $this->load->view('student/attendance', $data);
         $this->load->view('student/footer');
     }
+
+    public function one(){
+        
+        $this->student_model->two();
+
+       
+
+        redirect('index.php/teacher/viewcourse');
+   
+    }
+
+    public function viewcourse(){
+
+        $data['title'] = 'Confirmed course';
+
+        $this->student_model->course_confirmed();
+
+        $this->load->view('student/header');
+        $this->load->view('student/unconfireg', $data);
+        $this->load->view('student/footer');
+    }
+
+    
+    
 
    
 }
