@@ -106,10 +106,24 @@
  		//function for course in model
 
  		public function get_course(){
+			
+		
+			$this->db->select('course_code, course_name, CONCAT(firstname, mname, lastname) as byname');
+			$this->db->from('course_view');
+			$this->db->join('users', 'users.id= course_view.teacher_id', 'inner');
+						
 			$this->db->order_by('course_code');
-			$query = $this->db->get('course');
+			$query = $this->db->get();
 			return $query->result_array();
 		}
+
+		//course byteacher
+		public function course_teach(){
+		
+			$this->db->query("SELECT course_name, course_code,
+			 CONCAT(firstname, mname, lastname) as byname 
+			FROM course_view inner JOIN users WHERE users.id = course_view.id");
+		} 
 
 		public function getdepartments() {
 			$query = $this->db->get('department');
