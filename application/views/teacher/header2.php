@@ -96,6 +96,10 @@
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">profile</h6>
             <div class="dropdown-divider"></div>
+            <div align="center"><?php if($this->session->userdata('logged_in')) : ?>
+            <?php echo $this->session->userdata('reg_no');?>
+            <?php endif; ?>
+          </div>
            
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
