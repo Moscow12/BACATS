@@ -8,12 +8,15 @@
     margin: 0px auto;
     float: none;
 }</style>
+	
+<?php echo form_open('index.php/Student/one'); ?>
 <div class="col-sm-10">
     <div class="card">
         <div class="card-header">
             <h2><?php echo $title; ?></h2>
         </div>
         <div class="card-body">
+        <?php echo validation_errors(); ?>
             <div class="justfie"></div>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <tr>
@@ -23,15 +26,14 @@
                     <th><button class="btn btn-primary"><i class="fa fa-check"></i></button ><span>Register</span></th>
                 </tr>
                 
-                    <?php foreach ($courses as $course){ ?>
+                    <?php foreach ($courses as $users){ ?>
                         <tr>
-                            <td><?php echo $course['course_code']; ?></td>
-                            <td><?php echo $course['course_name']; ?></td>
-                            <td ></td>
+                            <td><?php echo $users['course_code']; ?></td>
+                            <td><?php echo $users['course_name']; ?></td>
+                            <td ><?php echo $users['Byname']; ?></td>
                             <td align="center">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" align="center">
-                                    <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+                                    <input type="checkbox" name="course[]" value="<?php echo $course['id']; ?>" class="form-check-input" id="exampleCheck1" align="center">
                                 </div>
                             </td>
                         </tr>
