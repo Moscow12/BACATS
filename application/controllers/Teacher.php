@@ -68,16 +68,7 @@
 				// redirect('index.php/Teacher/profile');
 			}	 	
 	 	}
-	 	public function attendance(){
-	 		$data['title'] = 'Attendance Table';
-
-
-			$data['attendances'] = $this->teacher_model->attendance();
-
-	 		$this->load->view('teacher/header2');
-			$this->load->view('teacher/attendance', $data);
-			$this->load->view('teacher/footer');
-		 }
+	 
 		 #teacher course registration
 		public function course(){
 			$data['title'] = 'Register Course You Instruct';
@@ -113,9 +104,7 @@
 			$data['title'] = 'Enrolled Student';
 
 			$data['students'] = $this->teacher_model->studentcourse();
-			
-			// $data['programes'] = $this->register_model->get_students();
-			
+						
 			$this->load->view('teacher/header2');
 			$this->load->view('teacher/student', $data);
 			$this->load->view('teacher/footer');
@@ -129,4 +118,30 @@
 			$this->load->view('teacher/vprofile', $data);
 			$this->load->view('teacher/footer');
 		}
+
+
+		//Attendance function 
+		public function attendance(){
+		   $data['title'] = 'Attendance Table';
+
+
+		   $data['attendances'] = $this->teacher_model->attendance();
+
+			$this->load->view('teacher/header2');
+		    $this->load->view('teacher/attendance', $data);
+		    $this->load->view('teacher/footer');
+		}
+
+		public function dayattandance(){
+			$data['title'] = 'Attendance Table';
+
+
+		   $data['attendances'] = $this->teacher_model->day_attendance();
+
+			$this->load->view('teacher/header2');
+		   $this->load->view('teacher/dayattendance', $data);
+		   $this->load->view('teacher/footer');
+		}
+
+		
 	}
