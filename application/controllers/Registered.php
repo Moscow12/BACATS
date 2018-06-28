@@ -44,7 +44,7 @@
 			} else{
 				#Encrept password
 				// $enc_password = md5($this->input->post('BACATS@2018'));
-				$data = array(
+				$data = array( 
 				'firstname' => $this->input->post('firstname'),
 				'mname' => $this->input->post('mname'),
 				'lastname' => $this->input->post('lastname'),
