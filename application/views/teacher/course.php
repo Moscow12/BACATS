@@ -3,7 +3,7 @@
 	redirect('index.php/users/index');
 	}?>
 <?php echo form_open('index.php/Teacher/submitcourse'); ?>
-<div class="row">
+<div class="row"><div class="col-md-3"></div>
     <div class="col-sm-6">
         <div class="card">
             <div class="card card-header"><?php echo $title; ?></div>
@@ -23,6 +23,6 @@
                
             </div>
         </div>
-    </div>
+    </div><div class="col-md-3"></div>
 </div>
 <?php echo form_close(); ?>
