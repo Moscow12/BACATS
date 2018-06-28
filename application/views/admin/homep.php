@@ -1,33 +1,3 @@
-<?php echo $title; ?>
-<!--design of a table-->
-<!-- <div class="row">
-	<div class="col-md-2"> happa<br/> hapa<br/></div>
-		<div class="col-md-10">
-			<table class="table table-striped"> 		
-				<thead> 
-					<tr> 
-						<th>Name</th>
-						<th>Reg.No</th>					
-						<th>Student details</th>
-					</tr>	
-				<?php 				
-					foreach ($registers as $registered){ ?>
-					<tr>
-						<td><?php echo $registered['firstname']; echo $registered['mname']; echo $registered['lastname']; ?> </td>
-						<td><?php echo $registered['reg_no']; ?> </td>
-						<td>
-						<span class="glyphicon glyphicon-eye-open"></span>
-						<a href="details">view</a>
-						</td>
-					</tr>
-				<?php }?>			
-			</tbody> 
-		</table>
-	</div>
-</div> -->
-
-<!--End of table design--> 
-
 
 <?php if(!($this->session->userdata('user_id'))){
 	redirect('index.php/users/index');
