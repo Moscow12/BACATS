@@ -21,8 +21,8 @@
   <body>
       <div class="row">
         <div class="card mesha">
-          <div class="card-header text-center">Enter Your Creadentials</div>
-            <div class="card-title text-center"><h3><?php echo $title; ?> </h3></div>
+          <div class="card-header text-center">Enter Your Creadentials to login</div>
+            <div class="card-title text-center"><h4><?php echo $title; ?> </h4></div>
               <div class="card-body">
               <div class="form-group">
               <center><?php echo validation_errors(); ?></center>
@@ -44,7 +44,6 @@
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">login</button> 
                 <div class="text-center">
-                  <a class="d-block small mt-3" href="register.html">Register an Account</a>
                   <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
                 </div>
               </div>
