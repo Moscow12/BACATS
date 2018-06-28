@@ -15,7 +15,7 @@
                   <th>Name</th>
                   <th>Reg: No.</th>
                   <th>program</th>
-                  <th>Attendance</th>
+                  <th>Total times Attended</th>
                   
                   <th>Total Percentage</th>
                 </tr>
@@ -25,32 +25,40 @@
                   <th>Name</th>
                   <th>Reg: No.</th>
                   <th>Program</th>
-                  <th>Attendance</th>
+                  <th>Total times Attended</th>
                   
                   <th>Total Percentage</th>
                 </tr>
               </tfoot>
               <tbody>
                 <tr>
-                  <td>Gloria Little</td>
-                  <td>2015-04-08524</td>
-                  <td>Bcs with</td>
-                  <td>59</td>
+                  <td>Beatrice J Saganya</td>
+                  <td>2015-04-02584</td>
+                  <td>Bachelor of Science in computer Science</td>
+                  <td>09</td>
                   
                   <td> <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
                 </tr>
                 
                 <tr>
-                  <td>Donna Snider</td>
-                  <td>2015-04-08516</td>
-                  <td>Bsc. in</td>
+                  <td>Semen Mak Ilan</td>
+                  <td>2015-04-08000</td>
+                  <td>Bachelor of Science with computer Science</td>
+                  <td>12</td>
+                  
+                  <td> <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
+                </tr>
+                <tr>
+                  <td>Hemmed Ally</td>
+                  <td>2015-04-08111</td>
+                  <td>Bachelor of Science in computer Science</td>
                   <td>27</td>
                   
                   <td> <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
                 </tr>
               </tbody>
-            </table><a href="dayattandance" class="btn btn-primary ">Today attendance</a>
-            </table><a href="download" class="btn btn-primary "><i class="fa fa-download"></i>Download Total attendance</a>
+            </table><a href="dayattandance" class="btn btn-primary " title="Click here to view today attendances">Today attendance</a>
+            </table><a href="download" class="btn btn-primary "><i class="fa fa-download" title="Click to download the report of attendances for the time"></i>Download Total attendance</a>
 
           </div>
         </div>
