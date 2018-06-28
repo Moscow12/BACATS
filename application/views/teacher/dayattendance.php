@@ -14,7 +14,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Reg: No.</th>
-                  <th>program</th>
+                  <th>Program</th>
                   <th>Time in</th>
                   <!-- <th>Attendance</th>
                   
@@ -33,26 +33,26 @@
                 </tr>
               </tfoot>
               <tbody>
-                <tr>
-                  <td>Gloria Little</td>
-                  <td>2015-04-08524</td>
-                  <td>Bcs with</td>
-                  <td>12:00</td>
+              <tr>
+                  <td>Semen Mak Ilan</td>
+                  <td>2015-04-08000</td>
+                  <td>Bachelor of Science with computer Science</td>
+                  <td>12:02</td>
                   <!-- <td>59</td>
                   
-                  <td> <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td> -->
+                  <td> </td> -->
                 </tr>
                 
                 <tr>
-                  <td>Donna Snider</td>
-                  <td>2015-04-08516</td>
-                  <td>Bsc. in</td>
+                  <td>Hemmed Ally</td>
+                  <td>2015-04-08111</td>
+                  <td>Bachelor of Science in computer Science</td>
                    <td>12:09</td>
                   
-                  <!--<td> <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td> -->
+                  <!--<td> </td> -->
                 </tr>
               </tbody>
-            </table><a href="attendance" class="btn btn-primary block"> <i class="fa fa-eye"></i> whole Attendance</a>      
+            </table><a href="attendance" class="btn btn-primary block" title="Click to View General attendances"> <i class="fa fa-eye"></i> whole Attendance</a>      
 
           </div>
         </div>
