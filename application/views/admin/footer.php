@@ -46,7 +46,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header" style="background-color:yellow; border-radius:7px">
-            <h5 class="modal-title" id="exampleModalLabel"><span class="fa fa-plus"></span> Users</h5>
+            <h5 class="modal-title" id="exampleModalLabel"><span class="fa fa-plus"></span> Assign New user</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -57,7 +57,7 @@
           
                     
               <div class="card">
-                <div class="card-body"><div class="card-header text-center"><?php echo $title; ?></div>
+                <div class="card-body"><div class="card-header text-center"><?php #echo $title; ?></div>
                 
                   <?php echo validation_errors(); ?>		
                     <div class="form-group">
