@@ -40,14 +40,14 @@
           </a>
        
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Update profile">
           <a class="nav-link" href="profile">
             <i class="fa fa-fw fa-user"></i>
-            <span class="nav-link-text">Edit profile</span>
+            <span class="nav-link-text">Profile</span>
           </a>
         </li>
        
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Register course">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-pencil"></i>
             <span class="nav-link-text">My Course</span>
@@ -69,7 +69,7 @@
         </li>
      
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#www.udsm.ac.tz">
             <i class="fa fa-fw fa-link"></i>
             <span class="nav-link-text">Link other website</span>
           </a>
