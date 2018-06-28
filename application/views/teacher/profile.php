@@ -3,7 +3,7 @@
 	redirect('index.php/users/index');
 	}?>
 
-	<div class="row">
+	<div class="row"><div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="card">
 				<div class="card card-header"><h1 class="text-center"><?php echo $title; ?></h1></div>
@@ -22,7 +22,7 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label>DOB</label>
+									<label>Date of Birth</label>
 									<input type="date" name="dob" placeholder="Enter Date of Birth" class="form-control">
 								</div>
 								<div class="form-group">
@@ -45,7 +45,7 @@
 							<?php echo form_close(); ?>
 					</div>	
 				</div>			
-			</div>
+			</div><div class="col-md-3"></div>
 			
 	</div>				
 	
