@@ -344,5 +344,18 @@
 			$this->load->view('admin/footer');
 		}
 
-	
+		//function for enrolling fingerprint first
+		// showing the registration number of the student to be enrolled and Name of the student
+		//after successful enrolled will diplay the name of the student
+		public function enrollfinger(){
+			$data['title'] = 'Enroll FingerPrints';
+
+			#$data['enrolls'] = $this->register_model->enroll_finger();
+			$data['students'] = $this->register_model->get_student();
+
+
+			$this->load->view('admin/header1');
+			$this->load->view('admin/fingerscan', $data);
+			$this->load->view('admin/footer');
+		}
 }
