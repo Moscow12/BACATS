@@ -117,6 +117,16 @@
 			return $query->result_array();
 		}
 
+		//function to get course for the reacter to enroll course
+		public function reg_course(){
+			$this->db->select('*');
+			$this->db->from('course');
+
+			$this->db->order_by('course_code');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		//course byteacher
 		public function course_teach(){
 		
@@ -169,5 +179,14 @@
 			#$this->db->where('student.program_id = student.user_id');
 			$query = $this->db->get();
 			return $query->result_array();
+		}
+
+		//function model to enroll finger prints in the database
+		public function enroll_finger(){
+			$data = array(
+				'reg_no' =>$this->input->post('id'),
+				'number' =>$this->input->post('number')
+			);
+			return $this->db->insert('student', $data);
 		}
 	}

@@ -34,3 +34,6 @@
 </div>
 	
 
+			<?php if($this->session->flashdata('course_register')):  ?>    
+                <?php echo '<p class="class="alert alert-success">'.$this->session->flashdata('course_register'). '</p>'; ?>
+            <?php endif; ?>
