@@ -72,7 +72,7 @@
 		 #teacher course registration
 		public function course(){
 			$data['title'] = 'Register Course You Instruct';
-			$data['Courses'] = $this->register_model->get_course();
+			$data['Courses'] = $this->register_model->reg_course();
 
 			$this->load->view('teacher/header2');
 			$this->load->view('teacher/course', $data);
@@ -93,6 +93,8 @@
 				$this->load->view('teacher/footer');
 			}else{
 				$this->teacher_model->create_course();
+
+				$this->session->set_flashdata('course_register', 'Your course has been registered successful');
 
 				redirect('index.php/teacher/student');
 			}
