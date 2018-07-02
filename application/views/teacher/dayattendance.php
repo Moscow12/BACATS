@@ -33,24 +33,24 @@
                 </tr>
               </tfoot>
               <tbody>
-              <tr>
-                  <td>Semen Mak Ilan</td>
-                  <td>2015-04-08000</td>
-                  <td>Bachelor of Science with computer Science</td>
-                  <td>12:02</td>
-                  <!-- <td>59</td>
-                  
-                  <td> </td> -->
-                </tr>
+              <?php foreach($day_attendance as $course_attendance){?>
+                  <tr>
+                      <td><?php echo $course_attendance['names']; ?></td>
+                      <td><?php echo $course_attendance['reg'];?></td>
+                      <td><?php echo $course_attendance['et']; ?></td>
+                      <td><?php echo $course_attendance['pname']; ?></td>
+                     
+                    </tr>
+              <?php }?>
                 
-                <tr>
+                <!-- <tr>
                   <td>Hemmed Ally</td>
                   <td>2015-04-08111</td>
                   <td>Bachelor of Science in computer Science</td>
                    <td>12:09</td>
                   
-                  <!--<td> </td> -->
-                </tr>
+                  <!--<td> </td> -
+                </tr> -->
               </tbody>
             </table><a href="attendance" class="btn btn-primary block" title="Click to View General attendances"> <i class="fa fa-eye"></i> whole Attendance</a>      
 

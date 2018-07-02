@@ -77,6 +77,13 @@
 	}
 
 	public function day_attendance(){
+		$this->db->select('CONCAT(course_attendance.firstname, course_attendance.mname, course_attendance.lastname) as names, 
+		course_attendance.reg_no as reg, course_attendance.attendance_date as et, program.program_name as pname');
+		$this->db->from('course_attendance');
+		$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
+		$this->db->where('course_id = 9' );
+		$this->db->where(' DATE(`attendance_date`) = CURDATE()');
+		$this->db->group_by('names');
 		
 	}
 	

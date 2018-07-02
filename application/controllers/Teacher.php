@@ -138,7 +138,7 @@
 			$data['title'] = 'Attendance Table';
 
 
-		   $data['attendances'] = $this->teacher_model->day_attendance();
+		   $data['day_attendance'] = $this->teacher_model->day_attendance();
 
 			$this->load->view('teacher/header2');
 		   $this->load->view('teacher/dayattendance', $data);
